@@ -34,7 +34,7 @@ let num = ref(0)
   </div>
 
   <footer class="bg-primary text-light">
-    <div>Design in {{ new Date().getFullYear() }}</div>
+    <div>Design in{{ new Date().getFullYear() }}</div>
   </footer>
 </template>
 
