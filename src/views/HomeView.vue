@@ -7,6 +7,7 @@ let urlBaseSVG = ref('https://raw.githubusercontent.com/PokeAPI/sprites/master/s
 let pokemons = reactive(ref())
 let searchPokemonField = ref("")
 let pokemonSelected = reactive(ref(""))
+let loading = ref(false)
 
 onMounted(() => {
   fetch('https://pokeapi.co/api/v2/pokemon?limit=151&offset=0')
@@ -22,9 +23,12 @@ const pokemonsFiltered = computed(() => {
 })
 
 const selectPokemon = async (pokemon) => {
+  loading.value = true
   await fetch(pokemon.url)
     .then(res => res.json())
     .then(res => pokemonSelected.value = res)
+    .catch(err => alert(err))
+    .finally(() => loading.value = false)
 }
 
 </script>
@@ -36,7 +40,8 @@ const selectPokemon = async (pokemon) => {
 
         <div class="col-sm-12 col-md-6">
           <CardPokemonSelected :name="pokemonSelected?.name" :xp="pokemonSelected.base_experience"
-            :height="pokemonSelected.height" :image="pokemonSelected?.sprites?.other.dream_world.front_default" />
+            :height="pokemonSelected.height" :image="pokemonSelected?.sprites?.other.dream_world.front_default"
+            :loading="loading" />
         </div>
 
         <div class="col-sm-12 col-md-6">
