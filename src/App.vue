@@ -1,8 +1,4 @@
 <script setup>
-import { ref } from 'vue'
-
-let num = ref(0)
-
 </script>
 
 <template>
@@ -38,7 +34,13 @@ let num = ref(0)
   </footer>
 </template>
 
-<style scoped>
+<style >
+body {
+  height: 100vh;
+  background: rgb(45, 101, 253);
+  background: linear-gradient(90deg, rgba(45, 101, 253, 1) 0%, rgba(106, 196, 233, 0.94) 100%);
+}
+
 footer {
   position: fixed;
   bottom: 0;
